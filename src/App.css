@@ -24,10 +24,25 @@
   font-size: calc(10px + 2vmin);
   color: #1aa4bd;
 }
-.App-main label{
-margin: 1rem;
-display: inline-flex;
+
+.App-main label {
+  margin: 1rem;
+  display: inline-flex;
 }
-.App-main input{
-  margin: .5rem;
-  }
+
+.App-main input {
+  margin-left: .5rem;
+  padding: .5rem;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #666 inset;
+  /* height: 2rem; */
+  /* line-height:2rem; */
+  /* width: 12rem; */
+  text-indent: 5px;
+}
+
+.App-main input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #e5673e inset;
+}
