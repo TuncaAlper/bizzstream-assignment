@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #335394;
+  background-color: #e5673e;
   height: 20vh;
   display: flex;
   flex-direction: column;
@@ -14,12 +14,13 @@
 }
 
 .App-main {
-  background-color: #627fb8;
+  background-color: white;
   height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #1aa4bd;
 }
