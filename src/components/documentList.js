@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 
 import buttonStyles from './Button.module.css'
-import initialLayout from '../data/layout.json'
-import initialData from '../data/data.json'
 import { saveData } from '../redux/actions/documentInfo';
 import { useDispatch } from 'react-redux';
 
-function DocumentList() {
-    const [layout, setLayout] = useState(initialLayout || {})
-    const [data, setData] = useState(initialData || {})
+function DocumentList(props) {
+    const { layout, definition } = props.documentInfo
     const dispatch = useDispatch()
 
+    const [data, setData] = useState(definition || {})
     const handleChangeInput = (e, column) => {
         e.preventDefault()
         const value = e.target.value
@@ -32,29 +30,28 @@ function DocumentList() {
             <div className="Document-container">
                 <form>
                     <table>
-                        {layout.header.rows.map((row, index) =>
-                            <tr>
-                                {row.columns.map((column, index) => {
-                                    let schemaInput = data.schema.fields.find(res => res._id === column.fieldId)
-                                    return schemaInput &&
-                                        <td>
-                                            <label key={index} >
-                                                {schemaInput.label}
-                                                <input
-                                                    key={index}
-                                                    type={schemaInput.type}
-                                                    value={schemaInput.value || ""}
-                                                    onChange={e => handleChangeInput(e, column)}
-                                                />
-                                            </label>
-                                        </td>
-                                }
-                                )}
-
-                            </tr>
-                        )}
-                        <button className={buttonStyles.btnMain} onClick={e => handleSaveInput(e, data)}>Save</button>
+                        <tbody>
+                            {layout.header.rows.map((row, index) =>
+                                <tr key={index}>
+                                    {row.columns.map((column, index) => {
+                                        let schemaInput = data.schema.fields.find(res => res._id === column.fieldId)
+                                        return schemaInput &&
+                                            <td key={index}>
+                                                <label >
+                                                    {schemaInput.label}
+                                                    <input
+                                                        type={schemaInput.type}
+                                                        value={schemaInput.value || ""}
+                                                        onChange={e => handleChangeInput(e, column)}
+                                                    />
+                                                </label>
+                                            </td>
+                                    })}
+                                </tr>
+                            )}
+                        </tbody>
                     </table>
+                    <button className={buttonStyles.btnMain} onClick={e => handleSaveInput(e, data)}>Save</button>
                 </form>
             </div>
             :

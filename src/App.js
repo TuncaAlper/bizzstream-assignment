@@ -1,18 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import DocumentList from './components/documentList';
-import initialLayout from './data/layout.json'
-import initialData from './data/data.json'
-import { useDispatch } from 'react-redux';
-import { getData, getLayout } from './redux/actions/documentInfo';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getLayout(initialLayout))
-    dispatch(getData(initialData))
-  }, [])
+  const storeDocumentInfo = useSelector(state => state.documentInfo)
 
   return (
     <div className="App">
@@ -20,7 +13,7 @@ function App() {
         Welcome to BizzStream Document App
       </header>
       <main className="App-main">
-        <DocumentList />
+        <DocumentList documentInfo={storeDocumentInfo} />
       </main>
     </div>
   );

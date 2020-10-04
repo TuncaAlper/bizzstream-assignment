@@ -24,3 +24,10 @@
   font-size: calc(10px + 2vmin);
   color: #1aa4bd;
 }
+.App-main label{
+margin: 1rem;
+display: inline-flex;
+}
+.App-main input{
+  margin: .5rem;
+  }
